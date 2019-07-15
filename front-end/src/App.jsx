@@ -1,13 +1,12 @@
 import React from 'react';
-//import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom'
+// import ReactDOM from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import Route from 'react-router-dom/Route';
 import './App.css';
-import Home from './containers/Home'
+import Home from './containers/Home';
 import CreateMovie from './containers/CreateMovie';
 import CreateActor from './containers/CreateActor';
-import 'bootstrap/dist/css/bootstrap.css';
-import EditMovie  from './containers/EditMovie';
+import EditMovie from './containers/EditMovie';
 
 function App() {
   return (
@@ -19,7 +18,6 @@ function App() {
         <Route path="/movie/edit" component={EditMovie} />
       </div>
     </Router>
-    
   );
 }
 
