@@ -24,12 +24,13 @@ mongo ds341837.mlab.com:41837/learning -u test -p test123
 
 # DB Scripts
 
-show dbs
-use learning
+- show dbs
+- use learning
 
-1. To get all movies => db.movies.find()
-2 .To get all actors => db.actors.find()
+To get all movies
+- db.movies.find()
+To get all actors
+- db.actors.find()
 
 # Validation
-
 Used Mongoose orm for creating schema, Fields validation and running mongo database queries.
