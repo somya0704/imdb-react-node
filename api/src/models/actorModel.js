@@ -7,7 +7,7 @@ const actorSchema = mongoose.Schema({
   },
   sex: {
     type: String,
-    required: true,
+
   },
   dob: {
     type: Date,

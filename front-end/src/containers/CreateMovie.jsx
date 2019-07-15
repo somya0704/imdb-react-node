@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { Form, Button, Dropdown } from 'semantic-ui-react';
 import { fetchApi } from '../config/api';
 import Modal from 'react-modal';
+import { Redirect } from 'react-router-dom';
 import CreateActor from './CreateActor';
+import { Home } from './Home';
 
 const customStyles = {
   content: {
@@ -23,6 +25,7 @@ export default class CreateMovie extends Component {
       localPosterUrl: null,
       isActorCreateModalOpen: false,
       selectedActorsDropdown: [],
+      toHome: true,
     };
   }
 
@@ -68,7 +71,8 @@ export default class CreateMovie extends Component {
     this.setState({
       [name]: value,
     });
-  }
+  };
+
 
   onActorSelect = (e, data) => {
     console.log(data);
@@ -90,6 +94,8 @@ onChange = (e) => {
       plot,
       actors: selectedActors,
     };
+
+
     const formData = new FormData();
     if (posterData) {
       formData.append('poster', posterData);
@@ -115,6 +121,11 @@ onChange = (e) => {
     }
   }
 
+  onMovieFormCancel = () => {
+    window.location.href = '/';
+  };
+
+
   onAddActorClick = () => {
     this.setState({ isActorCreateModalOpen: true });
   }
@@ -136,62 +147,65 @@ onChange = (e) => {
   render() {
     console.log(this.state);
 
-    const { value, localPosterUrl, actors, isActorCreateModalOpen, name, year, plot, selectedActorsDropdown } = this.state;
+    const { localPosterUrl, actors, isActorCreateModalOpen, name, year, plot, selectedActorsDropdown } = this.state;
     return (
-      <div style={{ width: '80%', marginLeft: '10%', marginTop: '80px' }}>
-        <Form>
-          <Form.Input name="name" fluid label="Movie Name" placeholder="Movie Name" value={name} onChange={this.handleInputChange} />
-          <Form.Input name="year" fluid label="Year of release" placeholder="Year of release" value={year} onChange={this.handleInputChange} />
-          <Form.TextArea name="plot" fluid label="Plot" placeholder="Plot" value={plot} onChange={this.handleInputChange} />
-          {
-            localPosterUrl && (
-              <img
-                style={{ width: 50, height: 50, marginRight: '10px' }}
-                src={localPosterUrl}
-                alt="Poster"
+      <div>
+        <h4><center>Create Movie</center></h4>
+        <div style={{ width: '80%', marginLeft: '10%', marginTop: '80px' }}>
+
+          <Form>
+            <Form.Input required name="name" fluid label="Movie Name" placeholder="Movie Name" value={name} onChange={this.handleInputChange} />
+            <Form.Input required name="year" type="number" fluid label="Year of release" placeholder="Year of release" value={year} onChange={this.handleInputChange} />
+            <Form.TextArea name="plot" fluid label="Plot" placeholder="Plot" value={plot} onChange={this.handleInputChange} />
+            {
+              localPosterUrl && (
+                <img
+                  style={{ width: 50, height: 50, marginRight: '10px' }}
+                  src={localPosterUrl}
+                  alt="Poster"
+                />
+              )
+            }
+
+            <input type="file" style={{ display: 'none' }} name="image" onChange={this.onChange} ref={abc => this.fileInput = abc} />
+            <Button style={{ marginBottom: '10px' }} onClick={() => this.fileInput.click()}>Choose poster</Button>
+            <Form.Group inline>
+              <Dropdown
+                placeholder="Actors"
+                fluid
+                multiple
+                search
+                selection
+                onChange={this.onActorSelect}
+                options={actors}
+                value={selectedActorsDropdown}
               />
-            )
-          }
+              <Form.Field>
+                <Button color="green" style={{ marginLeft: '10px' }} onClick={this.onAddActorClick}>Add New Actor</Button>
+              </Form.Field>
+            </Form.Group>
+            <Form.Group inline>
+              <Form.Field>
+                <Button onClick={this.onFormSubmit} color="green">Save</Button>
+              </Form.Field>
+            </Form.Group>
+          </Form>
 
-          <input type="file" style={{ display: 'none' }} name="image" onChange={this.onChange} ref={abc => this.fileInput = abc} />
-          <Button style={{ marginBottom: '10px' }} onClick={() => this.fileInput.click()}>Choose poster</Button>
-          <Form.Group inline>
-            <Dropdown
-              placeholder="Actors"
-              fluid
-              multiple
-              search
-              selection
-              onChange={this.onActorSelect}
-              options={actors}
-              value={selectedActorsDropdown}
+          <Modal
+            isOpen={isActorCreateModalOpen}
+            onRequestClose={this.closeModal}
+            style={customStyles}
+            contentLabel="New Actor"
+          >
+            <CreateActor
+              closeModal={() => this.setState({ isActorCreateModalOpen: false })}
+              onActorCreate={this.addActorToState}
             />
-            <Form.Field>
-              <Button color="green" style={{ marginLeft: '10px' }} onClick={this.onAddActorClick}>Add New Actor</Button>
-            </Form.Field>
-          </Form.Group>
-          <Form.Group inline>
-            <Form.Field>
-              <Button onClick={this.onFormSubmit} color="green">Save</Button>
-            </Form.Field>
-            <Form.Field>
-              <Form.Button>Cancel</Form.Button>
-            </Form.Field>
-          </Form.Group>
-        </Form>
-        <Modal
-          isOpen={isActorCreateModalOpen}
-          onRequestClose={this.closeModal}
-          style={customStyles}
-          contentLabel="New Actor"
-        >
-          <CreateActor
-            closeModal={() => this.setState({ isActorCreateModalOpen: false })}
-            onActorCreate={this.addActorToState}
-          />
-        </Modal>
-      </div>
+          </Modal>
+          <Button onClick={this.onMovieFormCancel} >Cancel</Button>
 
+        </div>
+      </div>
     );
   }
 }

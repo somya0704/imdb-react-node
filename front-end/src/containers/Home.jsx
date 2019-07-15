@@ -49,13 +49,13 @@ render() {
   console.log(this.props);
 
   return (
-    <div>
-      <h1>IMDB</h1>
+    <div style={{ width: '80%', marginLeft: '10%' }}>
+      <h1><center>IMDB</center></h1>
       <br />
-      <h4>Movies<br />
-        <Button color="green" onClick={this.onAddMovieClick}>Add Movie</Button>
-      </h4>
-      <br /><br /><br />
+      <Button color="green" style={{ marginLeft: '10px' }} onClick={this.onAddMovieClick}>Add Movie</Button>
+
+      <h2 style={{ marginLeft: '10px' }}>Movies</h2>
+      <br />
       <Table celled padded>
         <Table.Header>
           <Table.Row>
@@ -81,7 +81,7 @@ render() {
                     <img
                       style={{ width: 50, height: 50, marginRight: '10px' }}
                       src={movie.poster}
-                      alt="Poster"
+                      alt=""
                     />
                   </Table.Cell>
                   <Table.Cell>

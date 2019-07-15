@@ -54,10 +54,10 @@ export default class CreateActor extends Component {
 
             <Form>
               <Form.Group widths="equal">
-                <Form.Input name="name" fluid label="Actor Name" placeholder="Actor Name" onChange={this.handleInputChange} />
+                <Form.Input required name="name" fluid label="Actor Name" placeholder="Actor Name" onChange={this.handleInputChange} />
               </Form.Group>
               <Form.Group inline>
-                <label>sex</label>
+                <label >sex</label>
                 <Form.Radio
                   label="Male"
                   value="male"
@@ -78,7 +78,7 @@ export default class CreateActor extends Component {
                 />
               </Form.Group>
 
-              <Form.Input onChange={this.handleDateChange} fluid label="Date of Birth" type="Date" />
+              <Form.Input required onChange={this.handleDateChange} fluid label="Date of Birth" type="Date" />
 
               <Form.TextArea name="bio" onChange={this.handleInputChange} label="Bio" />
 
