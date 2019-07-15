@@ -1,5 +1,4 @@
 # imdb-react-node
-![Screenshot](Screenshot1.png)
 
 Clone project and go to project using terminal.
 
@@ -36,3 +35,11 @@ To get all actors
 
 # Validation
 Used Mongoose orm for creating schema, Fields validation and running mongo database queries.
+
+# Screenshots
+
+![Screenshot](Screenshot1.png)
+![Screenshot](Screenshot2.png)
+![Screenshot](Screenshot3.png)
+![Screenshot](Screenshot4.png)
+
