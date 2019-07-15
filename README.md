@@ -1,4 +1,5 @@
 # imdb-react-node
+![Screenshot](Screenshot1.png)
 
 Clone project and go to project using terminal.
 
