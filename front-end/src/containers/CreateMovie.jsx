@@ -113,7 +113,7 @@ onChange = (e) => {
     } else { // Create movie
       fetchApi('/movies', formData, 'post')
         .then((res) => {
-          console.log(res);
+          window.location.href = '/';
         })
         .catch((err) => {
           console.log(err);
