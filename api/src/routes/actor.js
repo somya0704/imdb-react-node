@@ -1,12 +1,13 @@
-let actorModel = require("../models/actorModel")
-let actorController = require("../controllers/actorController")
-let express = require('express')
-let router = express.Router()
+const actorController = require('../controllers/actorController');
+const express = require('express')
+;
 
-router.get('/', actorController.getActors)
+const router = express.Router();
 
-router.post('/', actorController.newActor)
+router.get('/', actorController.getActors);
 
-router.put('/:name', actorController.updateActor)
+router.post('/', actorController.newActor);
 
-module.exports = router
+router.put('/:name', actorController.updateActor);
+
+module.exports = router;

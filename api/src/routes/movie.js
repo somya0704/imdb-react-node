@@ -1,13 +1,15 @@
-//let movieModel = require("../models/movieModel")
-let movieController = require("../controllers/movieController")
-let express = require('express')
-let router = express.Router()
 import { upload } from '../config/posterMulter';
 
-router.get('/', movieController.getMovies)
+const movieController = require('../controllers/movieController');
+const express = require('express')
+;
 
-router.post('/', upload.single('poster'), movieController.newMovie)
+const router = express.Router();
 
-router.put('/:id', upload.single('poster'), movieController.updateMovie)
+router.get('/', movieController.getMovies);
 
-module.exports = router
+router.post('/', upload.single('poster'), movieController.newMovie);
+
+router.put('/:id', upload.single('poster'), movieController.updateMovie);
+
+module.exports = router;
