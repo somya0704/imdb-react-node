@@ -29,6 +29,7 @@ mongo ds341837.mlab.com:41837/learning -u test -p test123
 
 To get all movies
 - db.movies.find()
+
 To get all actors
 - db.actors.find()
 
