@@ -49,7 +49,7 @@ render() {
   console.log(this.props);
 
   return (
-    <div style={{ width: '80%', marginLeft: '10%' }}>
+    <div style={{ width: '80%', marginLeft: '10%', maxWidth: '80%', marginRight: '10%' }}>
       <h1><center>IMDB</center></h1>
       <br />
       <Button color="green" style={{ marginLeft: '10px' }} onClick={this.onAddMovieClick}>Add Movie</Button>
@@ -90,7 +90,7 @@ render() {
                     </Header>
                   </Table.Cell>
                   <Table.Cell singleLine>{movie.year}</Table.Cell>
-                  <Table.Cell singleLine>{movie.plot}</Table.Cell>
+                  <Table.Cell >{movie.plot}</Table.Cell>
                   <Table.Cell singleLine>{
                     movie.actors.map(actor => (
                       <React.Fragment key={movie.id}>
